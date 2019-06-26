@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    name:'Sudhi'
+  };
+  changeName =(newName) =>{
+    this.setState({
+        name:newName
+    })
+  };
+
+  changeNameFromInput =(event) =>{
+    this.setState({
+        name:event.target.value
+    })
+  };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <br></br>
+        <button onClick={()=>this.changeName('Rintu')}>Change using anonymous</button>
+        <button onClick={this.changeName.bind(this,'Jewel')}>Change using bind</button>
+        <br></br>
+        <input type="text" onChange={this.changeNameFromInput} value={this.state.name}></input>
+        <br></br>
+        <div>{this.state.name}</div>
       </div>
     );
   }
